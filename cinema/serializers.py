@@ -64,11 +64,11 @@ class MovieListSerializer(serializers.ModelSerializer):
 class MovieCreateSerializer(serializers.ModelSerializer):
     genres = serializers.PrimaryKeyRelatedField(
         many=True,
-        queryset=Genre.objects.all()
+        queryset=Genre.objects
     )
     actors = serializers.PrimaryKeyRelatedField(
         many=True,
-        queryset=Actor.objects.all()
+        queryset=Actor.objects
     )
 
     class Meta:
@@ -96,10 +96,10 @@ class CinemaHallSerializer(serializers.ModelSerializer):
 
 class MovieSessionSerializer(serializers.ModelSerializer):
     movie = serializers.PrimaryKeyRelatedField(
-        queryset=Movie.objects.all()
+        queryset=Movie.objects
     )
     cinema_hall = serializers.PrimaryKeyRelatedField(
-        queryset=CinemaHall.objects.all()
+        queryset=CinemaHall.objects
     )
 
     movie_title = serializers.SlugRelatedField(
@@ -122,9 +122,7 @@ class MovieSessionSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "show_time",
-            "movie",
             "movie_title",
-            "cinema_hall",
             "cinema_hall_name",
             "cinema_hall_capacity",
         )
